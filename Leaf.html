@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Web Map</title>
+       
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script type="text/javascript" src="bronxx.js"></script>
+        <script type="text/javascript" src="brooklyn.js"></script>
+        <script type="text/javascript" src="queens.js"></script>
+        <script type="text/javascript" src="state.js"></script>
+        <script type="text/javascript" src="manhattan.js"></script>
+        <style>
+            #mapid { position: absolute; top: 0; bottom: 0; left: 0; right: 0;}
+            /* remove label background elements */
+                .leaflet-tooltip.my-labels {
+                  background-color: transparent;
+                  border: transparent;
+                  box-shadow: none;
+                  font-weight: bold;
+                  font-size: 20px;
+
+                  }
+
+
+        </style>
+        
+    </head>
+    <body>
+        <div id="mapid"></div>
+        <script>
+    var mb_token = 'pk.eyJ1IjoiemVlc2hhbjE1MDkiLCJhIjoiY2tuMHJwMTVmMHFtZDJ2bm50MGNrdTJrYSJ9.jljjf5OdijXrVkyRYrYYsg'
+        var home = [40.6700,-73.9900];
+        var mymap = L.map('mapid').setView(home, 10);
+        L.tileLayer('https://api.mapbox.com/styles/v1/zeeshan1509/cksgial84nsvn17plk97v06vw/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiemVlc2hhbjE1MDkiLCJhIjoiY2tuMHJwMTVmMHFtZDJ2bm50MGNrdTJrYSJ9.jljjf5OdijXrVkyRYrYYsg', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 14,
+        minZoom: 10,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoiemVlc2hhbjE1MDkiLCJhIjoiY2tuMHJwMTVmMHFtZDJ2bm50MGNrdTJrYSJ9.jljjf5OdijXrVkyRYrYYsg'
+    }).addTo(mymap);
+ 
+
+
+   
+//bronx
+var myStyle = {
+    "color": "#00bfff",
+    "weight": 1,
+    "opacity": 1,
+    "fillColor":"#e3c4cc",
+     "fillOpacity": 1
+
+};
+
+L.geoJSON(bronx, {
+    style: myStyle
+}).addTo(mymap);
+
+//brooklyn
+
+var myStyle = {
+    "color": "#00bfff",
+    "weight": 1,
+    "opacity": 1,
+    "fillColor":"#d6c8ad",
+     "fillOpacity": 1
+
+};
+
+L.geoJSON(brooklyn, {
+    style: myStyle
+}).addTo(mymap);
+
+//manhattan
+
+var myStyle = {
+    "color": "#00bfff",
+    "weight": 1,
+    "opacity": 1,
+    "fillColor":"#f8c4aa",
+     "fillOpacity": 1
+
+};
+
+L.geoJSON(manhattan, {
+    style: myStyle
+}).addTo(mymap);
+
+//queens
+var myStyle = {
+    "color": "#00bfff",
+    "weight": 1,
+    "opacity": 1,
+    "fillColor":"#f2f2b7",
+     "fillOpacity": 1
+
+};
+
+L.geoJSON(queens, {
+    style: myStyle
+}).addTo(mymap);
+
+//state
+var myStyle = {
+    "color": "#00bfff",
+    "weight": 1,
+    "opacity": 1,
+    "fillColor":"#d4e3a5",
+     "fillOpacity": 1
+
+};
+
+L.geoJSON(state, {
+    style: myStyle
+}).addTo(mymap);
+
+var marker = new L.marker([40.8448,-73.8600], { opacity: 0.01 }); //opacity may be set to zero
+marker.bindTooltip("BRONX", {permanent: true, className: "my-labels", offset: [0, 0] });
+marker.addTo(mymap);
+
+var marker = new L.marker([40.7500, -73.9750], { opacity: 0.01 }); //opacity may be set to zero
+marker.bindTooltip("MANHATTAN", {permanent: true, className: "my-labels", offset: [0, 0] });
+marker.addTo(mymap);
+
+var marker = new L.marker([40.7282, -73.7949], { opacity: 0.01 }); //opacity may be set to zero
+marker.bindTooltip("QUEENS", {permanent: true, className: "my-labels", offset: [0, 0] });
+marker.addTo(mymap);
+
+var marker = new L.marker([40.6200, -73.9600], { opacity: 0.01 }); //opacity may be set to zero
+marker.bindTooltip("BROOKLYN", {permanent: true, className: "my-labels", offset: [0, 0] });
+marker.addTo(mymap);
+
+var marker = new L.marker([40.5795, -74.1500], { opacity: 0.01 }); //opacity may be set to zero
+marker.bindTooltip("STATEN ISLAND", {permanent: true, className: "my-labels", offset: [0, 0] });
+marker.addTo(mymap);
+
+var draggable = new L.Draggable(mymap);
+draggable.disable();
+        </script>
+
+    </body>
+</html>
